@@ -7,6 +7,7 @@ const schema = buildSchema(`
     apellido:String
     empresa:String
     emails:[Email]
+    edad: Int
   }
   type Email{
     email:String
@@ -20,6 +21,7 @@ const schema = buildSchema(`
     apellido:String!
     empresa:String!
     email:String!
+    edad:Int!
   }
   type Mutation {
     crearCliente(input: ClienteInput) : Cliente
