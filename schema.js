@@ -8,6 +8,11 @@ const schema = buildSchema(`
     empresa:String
     emails:[Email]
     edad: Int
+    tipo: TipoCliente
+  }
+  enum TipoCliente{
+    BASICO
+    PREMIUM
   }
   type Email{
     email:String
@@ -22,6 +27,7 @@ const schema = buildSchema(`
     empresa:String!
     email:String!
     edad:Int!
+    tipo: TipoCliente!
   }
   type Mutation {
     crearCliente(input: ClienteInput) : Cliente
