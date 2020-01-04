@@ -13,11 +13,14 @@ app.get("/", (req, res) => {
 const root = {
   cliente: () => {
     return {
-      id: 35345345345234,
-      nombre: "cesar",
-      apellido: "murillo",
-      empresa: "embajada",
-      email: "n@ede.com"
+      "id": 35345345345234,
+      "nombre": "cesar",
+      "apellido": "murillo",
+      "empresa": "embajada",
+      "emails": [
+        { email: "n@ede.com" },
+        { email: "nuevo@ede.com" }
+      ]
     };
   }
 };
