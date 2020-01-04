@@ -32,6 +32,7 @@ const schema = buildSchema(`
   input EmailInput{
     email: String 
   }
+  """ campos para los clientes nuevos """
   input ClienteInput {
     id: ID
     nombre:String!
@@ -42,7 +43,10 @@ const schema = buildSchema(`
     tipo: TipoCliente!
     pedidos: [PedidoInput]
   }
+  """ Mutation para crear nuevos clientes """
   type Mutation {
+    #Nombre del resolver, Input con Datos y Valor que retorna
+    """ Te permite crear nuevos clientes """
     crearCliente(input: ClienteInput) : Cliente
   }
 `);
