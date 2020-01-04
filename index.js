@@ -9,6 +9,18 @@ app.get("/", (req, res) => {
   res.send("Todo listo");
 });
 
+class Cliente {
+  constructor(id, { nombre, apellido, empresa, email }) {
+    this.id = id;
+    this.nombre = nombre;
+    this.apellido = apellido;
+    this.empresa = empresa;
+    this.email = email;
+  }
+}
+
+const clientesDB = {};
+
 //el resolver
 const root = {
   cliente: () => {
@@ -22,6 +34,11 @@ const root = {
         { email: "nuevo@ede.com" }
       ]
     };
+  },
+  crearCliente: ({ input }) => {
+    const id = require('crypto').randomBytes(10).toString('hex');
+    clientesDB[id] = input;
+    return new Cliente(id, input);
   }
 };
 
