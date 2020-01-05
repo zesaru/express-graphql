@@ -1,3 +1,6 @@
+import mongoose from 'mongoose';
+import { Clientes } from './db';
+
 class Cliente {
   constructor(id, { nombre, apellido, empresa, emails, edad, tipo, pedidos }) {
     this.id = id;
