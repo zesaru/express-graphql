@@ -46,4 +46,3 @@
     """ Te permite crear nuevos clientes """
     crearCliente(input: ClienteInput) : Cliente
   }
-`);
