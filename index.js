@@ -2,10 +2,6 @@ import express from "express";
 //graphql
 import graphqlHTTP from "express-graphql";
 import { schema } from "./data/schema";
-//resolvers
-import resolvers from "./data/resolvers";
-
-const root = resolvers;
 
 const app = express();
 

@@ -6,4 +6,4 @@ const typeDefs = importSchema('data/schema.graphql');
 
 const schema = makeExecutableSchema({ typeDefs, resolvers });
 
-export { schema }
+export { schema };

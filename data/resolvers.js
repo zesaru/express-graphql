@@ -2,21 +2,9 @@ import mongoose from 'mongoose';
 import { Clientes } from './db';
 import { rejects } from 'assert';
 
-class Cliente {
-  constructor(id, { nombre, apellido, empresa, emails, edad, tipo, pedidos }) {
-    this.id = id;
-    this.nombre = nombre;
-    this.apellido = apellido;
-    this.empresa = empresa;
-    this.emails = emails;
-    this.edad = edad;
-    this.tipo = tipo;
-    this.pedidos = pedidos;
-  }
-}
 
 //el resolver
-export const resolver = {
+export const resolvers = {
   Query: {
     getCliente: ({ id }) => {
       return new Cliente(id, clientesDB[id]);
@@ -33,7 +21,8 @@ export const resolver = {
         tipo: input.tipo,
         pedidos: input.pedidos
       });
-      nuevoCliente.id = nuevoCliente.__id
+
+      nuevoCliente.id = nuevoCliente._id
 
       return new Promise((resolve, object) => {
         nuevoCliente.save((error) => {
@@ -41,9 +30,6 @@ export const resolver = {
           else resolve(nuevoCliente)
         })
       });
-
-      clientesDB[id] = input;
-      return new Cliente(id, input);
     }
   }
 }
