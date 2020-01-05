@@ -1,6 +1,3 @@
-import { buildSchema } from "graphql";
-
-const schema = buildSchema(`
   type Cliente {
     id: ID
     nombre:String
@@ -50,5 +47,3 @@ const schema = buildSchema(`
     crearCliente(input: ClienteInput) : Cliente
   }
 `);
-
-export default schema;
