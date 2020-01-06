@@ -45,4 +45,5 @@
     #Nombre del resolver, Input con Datos y Valor que retorna
     """ Te permite crear nuevos clientes """
     crearCliente(input: ClienteInput) : Cliente
+    actualizarCliente(input: ClienteInput) : Cliente
   }
