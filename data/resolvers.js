@@ -6,6 +6,9 @@ import { rejects } from 'assert';
 //el resolver
 export const resolvers = {
   Query: {
+    getClientes: () => {
+      return Clientes.find({})
+    },
     getCliente: ({ id }) => {
       return new Cliente(id, clientesDB[id]);
     },
@@ -36,6 +39,14 @@ export const resolvers = {
         Clientes.findOneAndUpdate({ _id: input.id }, input, { new: true }, (error, cliente) => {
           if (error) rejects(error)
           else resolve(cliente)
+        });
+      });
+    },
+    eliminarCliente: (root, { id }) => {
+      return new Promise((resolve, object) => {
+        Clientes.findOneAndRemove({ _id: id }, (error) => {
+          if (error) rejects(error)
+          else resolve("Se elimino correctamente")
         });
       });
     }

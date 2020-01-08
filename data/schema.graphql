@@ -20,6 +20,7 @@
     PREMIUM
   }
   type Query {
+    getClientes:[Cliente]
     getCliente(id: ID):Cliente
   }
   input PedidoInput {
@@ -46,4 +47,5 @@
     """ Te permite crear nuevos clientes """
     crearCliente(input: ClienteInput) : Cliente
     actualizarCliente(input: ClienteInput) : Cliente
+    eliminarCliente(id: ID!) : String
   }
