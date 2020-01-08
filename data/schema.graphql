@@ -20,8 +20,8 @@
     PREMIUM
   }
   type Query {
-    getClientes:[Cliente]
-    getCliente(id: ID):Cliente
+    getClientes(limite:Int): [Cliente]
+    getCliente(id: ID): Cliente
   }
   input PedidoInput {
     producto: String
