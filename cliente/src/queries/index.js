@@ -1,4 +1,4 @@
-import gpl from "graphql-tag";
+import gql from "graphql-tag";
 
 export const CLIENTES_QUERY = gql`
   {
