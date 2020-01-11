@@ -12,7 +12,14 @@ class NuevoCliente extends Component {
       edad: "",
       tipo: ""
     },
-    error: false
+    error: false,
+    emails: []
+  };
+
+  nuevoCampo = () => {
+    this.setState({
+      emails: this.state.emails.concat([{ email: "" }])
+    });
   };
   render() {
     const { error } = this.state;
@@ -107,7 +114,7 @@ class NuevoCliente extends Component {
                   </div>
                 </div>
                 <div className="form-row">
-                  <div className="form-group col-md-6">
+                  <div className="form-group col-md-12">
                     <label>Empresa</label>
                     <input
                       type="text"
@@ -123,21 +130,14 @@ class NuevoCliente extends Component {
                       }}
                     />
                   </div>
-                  <div className="form-group col-md-6">
-                    <label>Email</label>
-                    <input
-                      type="email"
-                      className="form-control"
-                      placeholder="Email"
-                      onChange={e => {
-                        this.setState({
-                          cliente: {
-                            ...this.state.cliente,
-                            email: e.target.value
-                          }
-                        });
-                      }}
-                    />
+                  <div className="form-group d-flex justify-content-center col-md-12">
+                    <button
+                      onClick={this.nuevoCampo}
+                      type="button"
+                      className="btn btn-warning"
+                    >
+                      + Agregar email
+                    </button>
                   </div>
                 </div>
                 <div className="form-row">
