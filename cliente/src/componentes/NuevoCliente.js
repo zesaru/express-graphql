@@ -11,12 +11,22 @@ class NuevoCliente extends Component {
       email: "",
       edad: "",
       tipo: ""
-    }
+    },
+    error: false
   };
   render() {
+    const { error } = this.state;
+    let respuesta = error ? (
+      <p className="alert alert-danger p3 text-center">
+        Todos los datos son obligatorios
+      </p>
+    ) : (
+      ""
+    );
     return (
       <>
         <h2 className="text-center">Nuevo Cliente</h2>
+        {respuesta}
         <div className="row justify-content-center">
           <Mutation mutation={NUEVO_CLIENTE}>
             {crearCliente => (
@@ -34,6 +44,17 @@ class NuevoCliente extends Component {
                     tipo
                   } = this.state.cliente;
 
+                  if (
+                    nombre === "" ||
+                    apellido === "" ||
+                    empresa === "" ||
+                    edad === "" ||
+                    tipo === ""
+                  ) {
+                    this.setState({ error: true });
+                    return;
+                  }
+                  this.setState({ error: false });
                   const input = {
                     nombre,
                     apellido,
@@ -153,7 +174,7 @@ class NuevoCliente extends Component {
                   </div>
                 </div>
                 <button type="submit" className="btn btn-success float-right">
-                  Guardar Cambios
+                  Agregar Cliente
                 </button>
               </form>
             )}
