@@ -68,10 +68,11 @@ class NuevoCliente extends Component {
                     nombre,
                     apellido,
                     empresa,
-                    email,
                     edad,
                     tipo
                   } = this.state.cliente;
+
+                  const { emails } = this.state;
 
                   if (
                     nombre === "" ||
@@ -88,7 +89,7 @@ class NuevoCliente extends Component {
                     nombre,
                     apellido,
                     empresa,
-                    email,
+                    emails,
                     edad: Number(edad),
                     tipo
                   };
