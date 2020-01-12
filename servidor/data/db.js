@@ -2,8 +2,15 @@ import mongoose from "mongoose";
 import { Stream } from "stream";
 
 mongoose.Promise = global.Promise;
-
-mongoose.connect("mongodb://localhost/clientes", { useNewUrlParser: true });
+mongoose
+  .connect("mongodb://localhost/clientes", {
+    useUnifiedTopology: true,
+    useNewUrlParser: true
+  })
+  .then(() => console.log("DB Connected!"))
+  .catch(err => {
+    console.log(`DB Connection Error: ${err.message}`);
+  });
 
 const clientesSchema = new mongoose.Schema({
   nombre: String,

@@ -5,7 +5,10 @@ import { Query } from "react-apollo";
 import FormularioeEditarCliente from "./FormularioEditarCliente";
 
 class EditarCliente extends Component {
-  state = {};
+  state = {
+    cliente: this.props.cliente,
+    emails: this.props.clientes
+  };
   render() {
     const { id } = this.props.match.params;
     console.log(id);
@@ -19,7 +22,7 @@ class EditarCliente extends Component {
               if (loading) return "Cargando...";
               if (error) return `Error! ${error.message}`;
               console.log(data);
-              return <FormularioeEditarCliente />;
+              return <FormularioeEditarCliente cliente={data.getCliente} />;
             }}
           </Query>
         </div>
