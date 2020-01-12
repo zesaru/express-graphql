@@ -27,6 +27,19 @@ class NuevoCliente extends Component {
       emails: this.state.emails.filter((email, index) => i !== index)
     });
   };
+
+  leerCampo = i => e => {
+    const nuevoEmail = this.state.emails.map((email, index) => {
+      if (i !== index) return email;
+      return {
+        ...email,
+        email: e.target.value
+      };
+    });
+    this.setState({
+      emails: nuevoEmail
+    });
+  };
   render() {
     const { error } = this.state;
     let respuesta = error ? (
@@ -141,6 +154,7 @@ class NuevoCliente extends Component {
                       <label>Correo {index + 1}:</label>
                       <div className="input-group">
                         <input
+                          onChange={this.leerCampo(index)}
                           type="mail"
                           placeholder="Email"
                           className="form-control"
