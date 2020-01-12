@@ -21,6 +21,12 @@ class NuevoCliente extends Component {
       emails: this.state.emails.concat([{ email: "" }])
     });
   };
+
+  quitarCampo = i => () => {
+    this.setState({
+      emails: this.state.emails.filter((email, index) => i !== index)
+    });
+  };
   render() {
     const { error } = this.state;
     let respuesta = error ? (
@@ -133,11 +139,23 @@ class NuevoCliente extends Component {
                   {this.state.emails.map((input, index) => (
                     <div key={index} className="form-group col-md-12">
                       <label>Correo {index + 1}:</label>
-                      <input
-                        type="mail"
-                        placeholder="Email"
-                        className="form-control"
-                      />
+                      <div className="input-group">
+                        <input
+                          type="mail"
+                          placeholder="Email"
+                          className="form-control"
+                        />
+
+                        <div className="input-group-append">
+                          <button
+                            onClick={this.quitarCampo(index)}
+                            type="button"
+                            className="btn btn-danger"
+                          >
+                            &times; Eliminar
+                          </button>
+                        </div>
+                      </div>
                     </div>
                   ))}
 
