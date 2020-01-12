@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { ACTUALIZAR_CLIENTE } from "../mutations";
 
 class FormularioEditar extends Component {
   state = {
