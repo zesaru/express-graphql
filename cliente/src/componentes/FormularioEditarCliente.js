@@ -51,14 +51,38 @@ class FormularioEditar extends Component {
           </div>
           <div className="form-group col-md-6">
             <label>Apellido</label>
-            <input type="text" className="form-control" />
+            <input
+              type="text"
+              className="form-control"
+              defaultValue={apellido}
+              onChange={e => {
+                this.setState({
+                  cliente: {
+                    ...this.state.cliente,
+                    apellido: e.target.value
+                  }
+                });
+              }}
+            />
           </div>
         </div>
 
         <div className="form-row">
           <div className="form-group col-md-12">
             <label>Empresa</label>
-            <input type="text" className="form-control" />
+            <input
+              type="text"
+              className="form-control"
+              defaultValue={empresa}
+              onChange={e => {
+                this.setState({
+                  cliente: {
+                    ...this.state.cliente,
+                    empresa: e.target.value
+                  }
+                });
+              }}
+            />
           </div>
 
           {emails.map((input, index) => (
@@ -97,11 +121,34 @@ class FormularioEditar extends Component {
         <div className="form-row">
           <div className="form-group col-md-6">
             <label>Edad</label>
-            <input type="text" className="form-control" />
+            <input
+              type="text"
+              className="form-control"
+              defaultValue={edad}
+              onChange={e => {
+                this.setState({
+                  cliente: {
+                    ...this.state.cliente,
+                    edad: e.target.value
+                  }
+                });
+              }}
+            />
           </div>
           <div className="form-group col-md-6">
             <label>Tipo Cliente</label>
-            <select className="form-control">
+            <select
+              className="form-control"
+              defaultValue={tipo}
+              onChange={e => {
+                this.setState({
+                  cliente: {
+                    ...this.state.cliente,
+                    tipo: e.target.value
+                  }
+                });
+              }}
+            >
               <option value="">Elegir...</option>
               <option value="PREMIUM">PREMIUM</option>
               <option value="BASICO">BÁSICO</option>
