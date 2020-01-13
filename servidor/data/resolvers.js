@@ -18,6 +18,14 @@ export const resolvers = {
           else resolve(cliente);
         });
       });
+    },
+    totalClientes: root => {
+      return new Promise((resolve, object) => {
+        Clientes.countDocuments({}, (error, count) => {
+          if (error) rejects(error);
+          else resolve(count);
+        });
+      });
     }
   },
   Mutation: {

@@ -65,7 +65,10 @@ class Clientes extends Component {
                   );
                 })}
               </ul>
-              <Paginador actual={this.state.paginador.actual} />
+              <Paginador
+                actual={this.state.paginador.actual}
+                totalClientes={data.totalClientes}
+              />
             </>
           );
         }}
