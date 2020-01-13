@@ -5,10 +5,7 @@ import { Query } from "react-apollo";
 import FormularioeEditarCliente from "./FormularioEditarCliente";
 
 class EditarCliente extends Component {
-  state = {
-    cliente: this.props.cliente,
-    emails: this.props.clientes
-  };
+  state = {};
   render() {
     const { id } = this.props.match.params;
     console.log(id);
@@ -18,11 +15,16 @@ class EditarCliente extends Component {
 
         <div className="row justify-content-center">
           <Query query={CLIENTE_QUERY} variables={{ id }}>
-            {({ loading, error, data }) => {
+            {({ loading, error, data, refetch }) => {
               if (loading) return "Cargando...";
               if (error) return `Error! ${error.message}`;
-              console.log(data);
-              return <FormularioeEditarCliente cliente={data.getCliente} />;
+              //console.log(data);
+              return (
+                <FormularioeEditarCliente
+                  cliente={data.getCliente}
+                  refetch={refetch}
+                />
+              );
             }}
           </Query>
         </div>
