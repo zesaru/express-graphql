@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 
 export class Paginador extends Component {
-  state = {};
+  state = {
+    paginador: {
+      paginas: Math.ceil(Number(this.props.totalClientes) / this.props.limite)
+    }
+  };
   render() {
     const { actual } = this.props;
     const btnAnterior =
@@ -12,8 +16,22 @@ export class Paginador extends Component {
       ) : (
         ""
       );
+    // boton siguiente
+    const { paginas } = this.state.paginador;
+
+    const btnSiguiente =
+      actual !== paginas ? (
+        <button type="button" className="btn btn-success">
+          &raquo; Siguiente
+        </button>
+      ) : (
+        ""
+      );
     return (
-      <div className="mt-5 d-flex justify-content-center">{btnAnterior}</div>
+      <div className="mt-5 d-flex justify-content-center">
+        {btnAnterior}
+        {btnSiguiente}
+      </div>
     );
   }
 }

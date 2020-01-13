@@ -6,6 +6,8 @@ import { ELIMINAR_CLIENTE } from "../mutations";
 import Paginador from "./Paginador";
 
 class Clientes extends Component {
+  limite = 10;
+
   state = {
     paginador: {
       offset: 0,
@@ -68,6 +70,7 @@ class Clientes extends Component {
               <Paginador
                 actual={this.state.paginador.actual}
                 totalClientes={data.totalClientes}
+                limite={this.limite}
               />
             </>
           );
