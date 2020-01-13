@@ -1,5 +1,5 @@
 import React from "react";
-import { Query } from "react-apollo";
+import { Query, Mutation } from "react-apollo";
 import { CLIENTES_QUERY } from "../queries";
 import { Link } from "react-router-dom";
 import { ELIMINAR_CLIENTE } from "../mutations";
@@ -15,31 +15,46 @@ const Contactos = () => (
         <>
           <h2 className="text-center">Listado de Clientes</h2>
           <ul className="list-group">
-            {data.getClientes.map(item => (
-              <li key={item.id} className="list-group-item">
-                <div className="row justify-content-between align-items-center">
-                  <div className="col-md-8 d-flex justify-content-between align-items-center">
-                    {item.nombre} {item.apellido} - {item.empresa}
+            {data.getClientes.map(item => {
+              const { id } = item;
+              return (
+                <li key={item.id} className="list-group-item">
+                  <div className="row justify-content-between align-items-center">
+                    <div className="col-md-8 d-flex justify-content-between align-items-center">
+                      {item.nombre} {item.apellido} - {item.empresa}
+                    </div>
+                    <div className="col-md-4 d-flex justify-content-end">
+                      <Mutation mutation={ELIMINAR_CLIENTE}>
+                        {eliminarCliente => (
+                          <button
+                            className="btn btn-danger mr-2"
+                            onClick={() => {
+                              if (
+                                window.confirm(
+                                  "Seguro que deseas eliminar este cliente?"
+                                )
+                              ) {
+                                eliminarCliente({
+                                  variables: { id }
+                                });
+                              }
+                            }}
+                          >
+                            &times; Eliminar
+                          </button>
+                        )}
+                      </Mutation>
+                      <Link
+                        to={`/cliente/editar/${item.id}`}
+                        className="btn btn-success d-block d-md-inline-block"
+                      >
+                        Editar Cliente
+                      </Link>
+                    </div>
                   </div>
-                  <div className="col-md-4 d-flex justify-content-end">
-                    <button
-                      className="btn btn-danger mr-2"
-                      onClick={() => {
-                        console.warn(item.id);
-                      }}
-                    >
-                      &times; Eliminar
-                    </button>
-                    <Link
-                      to={`/cliente/editar/${item.id}`}
-                      className="btn btn-success d-block d-md-inline-block"
-                    >
-                      Editar Cliente
-                    </Link>
-                  </div>
-                </div>
-              </li>
-            ))}
+                </li>
+              );
+            })}
           </ul>
         </>
       );
