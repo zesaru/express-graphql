@@ -6,8 +6,10 @@ import { resolve } from "dns";
 //el resolver
 export const resolvers = {
   Query: {
-    getClientes: (root, { limite }) => {
-      return Clientes.find({}).limit(limite);
+    getClientes: (root, { limite, offset }) => {
+      return Clientes.find({})
+        .limit(limite)
+        .skip(offset);
     },
     getCliente: (root, { id }) => {
       return new Promise((resolve, object) => {
