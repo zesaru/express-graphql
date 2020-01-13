@@ -1,3 +1,4 @@
 .DS_Store
 servidor/node_modules
 cliente/node_modules
+cliente/yarn.lock
