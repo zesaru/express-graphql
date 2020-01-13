@@ -10,7 +10,11 @@ export class Paginador extends Component {
     const { actual } = this.props;
     const btnAnterior =
       actual > 1 ? (
-        <button type="button" className="btn btn-success mr-2">
+        <button
+          type="button"
+          className="btn btn-success mr-2"
+          onClick={this.props.paginaAnterior}
+        >
           &laquo; Anterior
         </button>
       ) : (
@@ -21,7 +25,11 @@ export class Paginador extends Component {
 
     const btnSiguiente =
       actual !== paginas ? (
-        <button type="button" className="btn btn-success">
+        <button
+          type="button"
+          className="btn btn-success"
+          onClick={this.props.paginaSiguiente}
+        >
           &raquo; Siguiente
         </button>
       ) : (
