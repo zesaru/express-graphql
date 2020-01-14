@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { Clientes } from "./db";
+import { Clientes, Productos } from "./db";
 import { rejects } from "assert";
 import { resolve } from "dns";
 
@@ -67,6 +67,23 @@ export const resolvers = {
         Clientes.findOneAndRemove({ _id: id }, error => {
           if (error) rejects(error);
           else resolve("Se elimino correctamente");
+        });
+      });
+    },
+    nuevoProducto: (root, { input }) => {
+      const nuevoProducto = new Productos({
+        nombre: input.nombre,
+        precio: input.precio,
+        stock: input.stock
+      });
+
+      //mongo db crea el id que se asigna al objeto
+      nuevoProducto.id = nuevoProducto._id;
+
+      return new Promise((resolve, object) => {
+        nuevoProducto.save(error => {
+          if (error) rejects(error);
+          else resolve(nuevoProducto);
         });
       });
     }
