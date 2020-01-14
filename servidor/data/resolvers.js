@@ -26,6 +26,11 @@ export const resolvers = {
           else resolve(count);
         });
       });
+    },
+    obtenerProductos: (root, { limite, offset }) => {
+      return Productos.find({})
+        .limit(limite)
+        .skip(offset);
     }
   },
   Mutation: {

@@ -30,10 +30,6 @@ const productosSchema = new mongoose.Schema({
   stock: Number
 });
 
-const Productos = new mongoose.Schema({
-  nombre: String,
-  precio: Number,
-  stock: Number
-});
+const Productos = mongoose.model("productos", productosSchema);
 
 export { Clientes, Productos };
