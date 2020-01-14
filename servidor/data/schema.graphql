@@ -15,6 +15,13 @@ type Pedido {
   producto: String
   precio: Int
 }
+
+type Producto {
+  id: ID
+  nombre: String!
+  precio: Int!
+  stock: Int!
+}
 enum TipoCliente {
   BASICO
   PREMIUM
@@ -45,6 +52,15 @@ input ClienteInput {
   pedidos: [PedidoInput]
 }
 """
+campos para los agregar nuevos productos
+"""
+input ProductoInput {
+  id: ID
+  nombre: String!
+  precio: Int!
+  stock: Int!
+}
+"""
 Mutation para crear nuevos clientes
 """
 type Mutation {
@@ -55,4 +71,6 @@ type Mutation {
   crearCliente(input: ClienteInput): Cliente
   actualizarCliente(input: ClienteInput): Cliente
   eliminarCliente(id: ID!): String
+  #productos
+  nuevoProducto(input: ProductoInput): Producto
 }
