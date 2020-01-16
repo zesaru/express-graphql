@@ -3,10 +3,11 @@ import { ApolloProvider } from "react-apollo";
 import ApolloClient, { InMemoryCache } from "apollo-boost";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-import Header from "./componentes/Header";
-import Clientes from "./componentes/Clientes";
-import NuevoCliente from "./componentes/NuevoCliente";
-import EditarCliente from "./componentes/EditarCliente";
+import Header from "./componentes/Layout/Header";
+import Clientes from "./componentes/Clientes/Clientes";
+import NuevoCliente from "./componentes/Clientes/NuevoCliente";
+import NuevoProducto from "./componentes/Productos/NuevoProducto";
+import EditarCliente from "./componentes/Clientes/EditarCliente";
 
 const client = new ApolloClient({
   uri: "http://localhost:4000/graphql",
@@ -34,6 +35,7 @@ class App extends Component {
                 component={EditarCliente}
               />
               <Route exact path="/cliente/nuevo" component={NuevoCliente} />
+              <Route exact path="/productos/nuevo" component={NuevoProducto} />
             </Switch>
           </div>
         </Router>

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { NUEVO_CLIENTE } from "../mutations";
+import { NUEVO_CLIENTE } from "../../mutations";
 import { Mutation } from "react-apollo";
 
 class NuevoCliente extends Component {

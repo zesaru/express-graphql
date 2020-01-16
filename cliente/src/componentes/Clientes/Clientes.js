@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Query, Mutation } from "react-apollo";
-import { CLIENTES_QUERY } from "../queries";
+import { CLIENTES_QUERY } from "../../queries";
 import { Link } from "react-router-dom";
-import { ELIMINAR_CLIENTE } from "../mutations";
-import Paginador from "./Paginador";
+import { ELIMINAR_CLIENTE } from "../../mutations";
+import Paginador from "../Paginador";
 
 class Clientes extends Component {
   limite = 10;
