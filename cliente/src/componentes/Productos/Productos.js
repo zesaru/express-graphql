@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Query } from "react-apollo";
 import { OBTENER_PRODUCTOS } from "../../queries";
+import { Link } from "react-router-dom";
 
 export class Productos extends Component {
   state = {};
@@ -25,6 +26,31 @@ export class Productos extends Component {
                     <th scope="col">Editar</th>
                   </tr>
                 </thead>
+                <tbody>
+                  {data.obtenerProductos.map(item => {
+                    const { id } = item;
+                    return (
+                      <tr key={id}>
+                        <td>{item.nombre}</td>
+                        <td>{item.precio}</td>
+                        <td>{item.stock}</td>
+                        <td>
+                          <button type="button" className="btn btn-danger">
+                            &times; Eliminar
+                          </button>
+                        </td>
+                        <td>
+                          <Link
+                            to={`/productos/editar/${id}`}
+                            className="btn btn-success"
+                          >
+                            Editar Producto
+                          </Link>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
               </table>
             );
           }}
