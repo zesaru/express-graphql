@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import { Query } from "react-apollo";
+import { Query, Mutation } from "react-apollo";
 import { OBTENER_PRODUCTOS } from "../../queries";
 import { Link } from "react-router-dom";
+import { ELIMINAR_PRODUCTO } from "../../mutations";
 
 export class Productos extends Component {
   state = {};
@@ -35,9 +36,27 @@ export class Productos extends Component {
                         <td>{item.precio}</td>
                         <td>{item.stock}</td>
                         <td>
-                          <button type="button" className="btn btn-danger">
-                            &times; Eliminar
-                          </button>
+                          <Mutation mutation={ELIMINAR_PRODUCTO}>
+                            {eliminarProducto => (
+                              <button
+                                onClick={() => {
+                                  if (
+                                    window.confirm(
+                                      "seguro que quieres eliminar este producto?"
+                                    )
+                                  ) {
+                                    eliminarProducto({
+                                      variables: { id }
+                                    });
+                                  }
+                                }}
+                                type="button"
+                                className="btn btn-danger"
+                              >
+                                &times; Eliminar
+                              </button>
+                            )}
+                          </Mutation>
                         </td>
                         <td>
                           <Link
