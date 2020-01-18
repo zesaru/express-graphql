@@ -1,20 +1,32 @@
 import React, { Component } from "react";
 import { Query, Mutation } from "react-apollo";
-import { OBTENER_PRODUCTOS } from "../../queries";
 import { Link } from "react-router-dom";
+import { OBTENER_PRODUCTOS } from "../../queries";
 import { ELIMINAR_PRODUCTO } from "../../mutations";
+import Exito from "../Alertas/Exito";
 
 export class Productos extends Component {
-  state = {};
+  state = {
+    alerta: {
+      mostrar: false,
+      mensaje: ""
+    }
+  };
+
   render() {
+    const {
+      alerta: { mostrar, mensaje }
+    } = this.state;
+
+    const alerta = mostrar ? <Exito mensaje={mensaje} /> : "";
     return (
       <>
         <h1 className="text-center mb-5">Productos</h1>
+        {alerta}
         <Query query={OBTENER_PRODUCTOS} pollInterval={1000}>
           {({ loading, error, data, startPolling, stopPolling }) => {
             if (loading) return "Cargando...";
             if (error) return `Error: ${error.messages}`;
-            console.log(data.obtenerProductos);
 
             return (
               <table className="table">
@@ -36,7 +48,29 @@ export class Productos extends Component {
                         <td>{item.precio}</td>
                         <td>{item.stock}</td>
                         <td>
-                          <Mutation mutation={ELIMINAR_PRODUCTO}>
+                          <Mutation
+                            mutation={ELIMINAR_PRODUCTO}
+                            onCompleted={data => {
+                              this.setState(
+                                {
+                                  alerta: {
+                                    mostrar: true,
+                                    mensaje: data.eliminarProducto
+                                  }
+                                },
+                                () => {
+                                  setTimeout(() => {
+                                    this.setState({
+                                      alerta: {
+                                        mostrar: false,
+                                        mensaje: ""
+                                      }
+                                    });
+                                  }, 3000);
+                                }
+                              );
+                            }}
+                          >
                             {eliminarProducto => (
                               <button
                                 onClick={() => {
