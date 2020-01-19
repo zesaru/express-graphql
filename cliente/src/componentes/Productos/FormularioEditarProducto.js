@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { Query, Mutation } from "react-apollo";
+import { Mutation } from "react-apollo";
 import { ACTUALIZAR_PRODUCTO } from "../../mutations";
+import { withRouter } from "react-router-dom";
 
 const initialState = {
   nombre: "",
@@ -35,7 +36,9 @@ export class FormularioEditar extends Component {
     e.preventDefault();
 
     actualizarProducto().then(data => {
-      console.log(data);
+      this.setState({
+        ...initialState
+      });
     });
   };
   render() {
@@ -48,7 +51,16 @@ export class FormularioEditar extends Component {
       stock: Number(stock)
     };
     return (
-      <Mutation mutation={ACTUALIZAR_PRODUCTO} variables={{ input }} key={id}>
+      <Mutation
+        mutation={ACTUALIZAR_PRODUCTO}
+        variables={{ input }}
+        key={id}
+        onCompleted={() =>
+          this.props.refetch().then(() => {
+            this.props.history.push("/productos");
+          })
+        }
+      >
         {(actualizarProducto, { loading, error, data }) => {
           return (
             <form
@@ -108,4 +120,4 @@ export class FormularioEditar extends Component {
   }
 }
 
-export default FormularioEditar;
+export default withRouter(FormularioEditar);
