@@ -88,7 +88,7 @@ export const resolvers = {
       return new Promise((resolve, object) => {
         Clientes.findOneAndDelete({ _id: id }, error => {
           if (error) rejects(error);
-          else resolve("Se elimino correctamente");
+          else resolve("El cliente se elimino correctamente");
         });
       });
     },
