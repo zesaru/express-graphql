@@ -78,6 +78,7 @@ class Clientes extends Component {
                               </button>
                             )}
                           </Mutation>
+
                           <Link
                             to={`/cliente/editar/${item.id}`}
                             className="btn btn-success d-block d-md-inline-block"
@@ -92,7 +93,7 @@ class Clientes extends Component {
               </ul>
               <Paginador
                 actual={this.state.paginador.actual}
-                totalClientes={data.totalClientes}
+                total={data.totalClientes}
                 limite={this.limite}
                 paginaAnterior={this.paginaAnterior}
                 paginaSiguiente={this.paginaSiguiente}
