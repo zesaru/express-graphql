@@ -5,6 +5,7 @@ export class NuevoPedido extends Component {
   state = {};
   render() {
     const { id } = this.props.match.params;
+    console.log(this.props.match.params);
     return (
       <>
         <h1 className="text-center mb-5">Nuevo Pedido</h1>

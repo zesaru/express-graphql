@@ -71,7 +71,7 @@ class Clientes extends Component {
                         </div>
                         <div className="col-md-5 d-flex justify-content-end">
                           <Link
-                            to={`/pedidos/nuevo/&{id}`}
+                            to={`/pedidos/nuevo/${id}`}
                             className={
                               "btn btn-warning d-block d-md-inline-block mr-2"
                             }
