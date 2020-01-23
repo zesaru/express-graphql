@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
+import Resumen from "./Resumen";
 
 export class ContenidoPedido extends Component {
   state = { productos: [] };
@@ -22,6 +23,7 @@ export class ContenidoPedido extends Component {
           getOptionValue={options => options.id}
           getOptionLabel={options => options.nombre}
         />
+        <Resumen productos={this.state.productos} />
       </>
     );
   }
