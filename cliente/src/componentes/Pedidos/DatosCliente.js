@@ -18,6 +18,7 @@ const DatosCliente = ({ id }) => {
             empresa,
             tipo
           } = data.getCliente;
+          console.log(data.getCliente);
           return (
             <ul className="list-unstyled my-5">
               <li className="border font-weigth-bold p-2">
@@ -32,7 +33,7 @@ const DatosCliente = ({ id }) => {
               <li className="border font-weigth-bold p-2">
                 emails:{" "}
                 <span className="font-weight-normal">
-                  {emails.map(email => `$(email.email)`)}
+                  {emails.map(email => ` ${email.email} `)}
                 </span>
               </li>
               <li className="border font-weigth-bold p-2">
